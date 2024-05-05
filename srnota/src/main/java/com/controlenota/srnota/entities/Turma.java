@@ -1,53 +1,97 @@
 package com.controlenota.srnota.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_turma")
+@Table(name = "tb_turma")
 public class Turma {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTurma;
-    private String nomeTurma;
-    private Integer ano;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_turma;
 
-    public Turma(){}
+	private String nome;
 
-    public Turma(Long idTurma, String nomeTurma, Integer ano) {
-        this.idTurma = idTurma;
-        this.nomeTurma = nomeTurma;
-        this.ano = ano;
-    }
+	private Integer ano;
 
-    public Long getIdTurma() {
-        return idTurma;
-    }
+	@ManyToOne
+    @JoinColumn(name = "curso_id")
+	private Curso curso;
 
-    public void setIdTurma(Long idTurma) {
-        this.idTurma = idTurma;
-    }
+	@ManyToMany
+    @JoinTable(
+        name = "tb_turma_professor",
+        joinColumns = @JoinColumn(name = "turma_id"),
+        inverseJoinColumns = @JoinColumn(name = "professor_id")
+    )
+	private List<Professor> professores = new ArrayList<>();
 
-    public String getNomeTurma() {
-        return nomeTurma;
-    }
+	@OneToMany(mappedBy = "turmaDisciplina")
+	private List<Disciplina> disciplinas = new ArrayList<>();
 
-    public void setNomeTurma(String nomeTurma) {
-        this.nomeTurma = nomeTurma;
-    }
+	@OneToMany(mappedBy = "turmaMatricula")
+	private List<Matricula> matriculasDaTurma = new ArrayList<>();
 
-    public Integer getAno() {
-        return ano;
-    }
+	public Turma(){};
 
-    public void setAno(Integer ano) {
-        this.ano = ano;
-    };
+	public Turma(Integer id_turma, String nome, Integer ano) {
+		this.id_turma = id_turma;
+		this.nome = nome;
+		this.ano = ano;
+	};
 
-    
+	public Integer getId_turma() {
+		;return id_turma;
+	}
+
+	public void setId_turma(Integer id_turma) {
+		this.id_turma = id_turma;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public List<Matricula> getMatriculasDaTurma() {
+		return matriculasDaTurma;
+	}
+
+	
 
 }

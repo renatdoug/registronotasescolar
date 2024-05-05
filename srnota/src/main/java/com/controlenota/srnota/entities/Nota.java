@@ -4,42 +4,47 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_nota")
+@Table(name = "tb_nota")
 public class Nota {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idNota;
-    private Double nota;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_nota;
 
-    public Nota(){}
+	private Double nota;
 
-    public Nota(Long idNota, Double nota) {
-        this.idNota = idNota;
-        this.nota = nota;
-    }
+	@ManyToOne
+	@JoinColumn(name = "matricula_id")
+	private Matricula matricula;
 
-    public Long getIdNota() {
-        return idNota;
-    }
+	public Nota() {};
 
-    public void setIdNota(Long idNota) {
-        this.idNota = idNota;
-    }
+	public Integer getId_nota() {
+		return id_nota;
+	}
 
-    public Double getNota() {
-        return nota;
-    }
+	public void setId_nota(Integer id_nota) {
+		this.id_nota = id_nota;
+	}
 
-    public void setNota(Double nota) {
-        this.nota = nota;
-    }
+	public Double getNota() {
+		return nota;
+	}
 
-    
+	public void setNota(Double nota) {
+		this.nota = nota;
+	}
 
-    
+    public Matricula getMatricula() {
+		return matricula;
+	}
+
+	
+
 
 }

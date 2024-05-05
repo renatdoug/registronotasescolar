@@ -1,8 +1,8 @@
 package com.controlenota.srnota.entities;
 
+
 import java.util.Date;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,79 +16,74 @@ import jakarta.persistence.Table;
 @Table(name = "tb_aluno")
 public class Aluno {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idAluno;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_aluno;
 
-    private String nome;
-    private Date dtNascimento;
-    private char sexo;
-    private String cpf;
+	private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "responsavel_id")
-    private Responsavel responsavel;
+	private Date dataNascimento;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "matricula_id", referencedColumnName = "idMatricula")
-    private Matricula matricula;
+	private String cpf;
 
-    public Aluno(){}
+	@OneToOne(mappedBy = "aluno")
+	@JoinColumn(name = "matricula_id")
+	private Matricula matriculaDoAluno;
 
-    public Aluno(Long idAluno, String nome, Date dtNascimento, char sexo, String cpf) {
-        this.idAluno = idAluno;
-        this.nome = nome;
-        this.dtNascimento = dtNascimento;
-        this.sexo = sexo;
-        this.cpf = cpf;
-    }
+	@ManyToOne
+	@JoinColumn(name = "id_responsavel")
+	private Responsavel responsavel;
 
-    public Long getIdAluno() {
-        return idAluno;
-    }
+	public Aluno(){};
 
-    public void setIdAluno(Long idAluno) {
-        this.idAluno = idAluno;
-    }
+	public Aluno(Integer id_aluno, String nome, Date dataNascimento, String cpf) {
+		this.id_aluno = id_aluno;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.cpf = cpf;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public Integer getId_aluno() {
+		return id_aluno;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId_aluno(Integer id_aluno) {
+		this.id_aluno = id_aluno;
+	}
 
-    public Date getDtNascimento() {
-        return dtNascimento;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
 
-    public char getSexo() {
-        return sexo;
-    }
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public Matricula getMatriculaDoAlun() {
+		return matriculaDoAluno;
+	}
 
-   
+	public Responsavel getResponsavel() {
+		return responsavel;
+	}
 
-    
-    
+	
 
-
-
+	
 
 }

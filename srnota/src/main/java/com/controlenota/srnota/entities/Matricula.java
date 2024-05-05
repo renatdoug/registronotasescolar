@@ -1,75 +1,73 @@
 package com.controlenota.srnota.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "tb_matricula")
 public class Matricula {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMatricula;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_matricula;
 
-    private String matricula; // Alterado para String para representar o formato desejado
+	private String matricula;
 
-    private Integer anoMatricula;
+	@ManyToOne
+    @JoinColumn(name =  "turma_id")
+	private Turma turmaMatricula;
 
-    @OneToOne(mappedBy = "matricula")
-    private Aluno aluno;
-    
-    public Matricula() {
-        // Construtor vazio necessário para JPA
-    }
+	@OneToMany(mappedBy = "matricula")   
+	private List<Nota> notasDaMatricula = new ArrayList<>();
 
-    
+	@OneToOne
+	@JoinColumn(name = "aluno_id")
+	private Aluno aluno;
 
-    public Matricula(Long idMatricula, String matricula, Integer anoMatricula) {
-        this.idMatricula = idMatricula;
-        this.anoMatricula = anoMatricula;
-        gerarMatricula();
+	public Matricula(){};
+	
 
-    }
+	public Matricula(Integer id_matricula, String matricula) {
+		this.id_matricula = id_matricula;
+		this.matricula = matricula;
+	}
 
+	public Integer getId_matricula() {
+		return id_matricula;
+	}
 
-    private void gerarMatricula() {
-        // Gerar dois dígitos aleatórios
-        int algarismo1 = (int) (Math.random() * 10);
-        int algarismo2 = (int) (Math.random() * 10);
+	public void setId_matricula(Integer id_matricula) {;
+		this.id_matricula = id_matricula;
+	}
 
-        // Formatar a matrícula no padrão desejado
-        this.matricula = String.format("%d%02d%d", anoMatricula, algarismo1, algarismo2);
-    }
+	public String getMatricula() {
+		return matricula;
+	}
 
-    public Long getIdMatricula() {
-        return idMatricula;
-    }
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 
-    public void setIdMatricula(Long idMatricula) {
-        this.idMatricula = idMatricula;
-    }
+	public Turma getTurmaMatricula() {
+		return turmaMatricula;
+	}
 
-    public String getMatricula() {
-        return matricula;
-    }
+	public List<Nota> getNotasDaMatricula() {
+		return notasDaMatricula;
+	}
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
+	public Aluno getAluno() {
+		return aluno;
+	}
 
-    public Integer getAnoMatricula() {
-        return anoMatricula;
-    }
-
-    public void setAnoMatricula(Integer anoMatricula) {
-        this.anoMatricula = anoMatricula;
-    }
-
-    
 }
-

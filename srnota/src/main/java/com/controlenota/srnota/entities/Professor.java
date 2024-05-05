@@ -1,68 +1,90 @@
 package com.controlenota.srnota.entities;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_professor")
+@Table(name = "tb_professor")
 public class Professor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProfessor;
-    private String nome;
-    private String Especializacao;
-    private String email;
-    private String telefone;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_professor;
 
-    public Professor(){}
+	private String nome;
 
-    public Long getIdProfessor() {
-        return idProfessor;
-    }
+	private String especializacao;
 
-    public void setIdProfessor(Long idProfessor) {
-        this.idProfessor = idProfessor;
-    }
+	private String email;
 
-    public String getNome() {
-        return nome;
-    }
+	private String telefone;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	@ManyToMany(mappedBy = "professores")
+	private List<Turma> turmasDoProfessores = new ArrayList<>();
 
-    public String getEspecializacao() {
-        return Especializacao;
-    }
+	public Professor(){};
 
-    public void setEspecializacao(String especializacao) {
-        Especializacao = especializacao;
-    }
+	public Professor(Integer id_professor, String nome, String especializacao, String email, String telefone) {
+		this.id_professor = id_professor;
+		this.nome = nome;
+		this.especializacao = especializacao;
+		this.email = email;
+		this.telefone = telefone;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Integer getId_professor() {
+		return id_professor;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setId_professor(Integer id_professor) {
+		this.id_professor = id_professor;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    };
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    
+	public String getEspecializacao() {
+		return especializacao;
+	}
 
+	public void setEspecializacao(String especializacao) {
+		this.especializacao = especializacao;
+	}
 
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public List<Turma> getTurmasDoProfessores() {
+		return turmasDoProfessores;
+	};
+
+	
 
 }

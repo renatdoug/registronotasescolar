@@ -1,64 +1,75 @@
 package com.controlenota.srnota.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_curso")
 public class Curso {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCurso;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_curso;
+
+	private String nome;
+
+	private Integer ano;
     
-    private String nome;
-    private Integer cargaHoraria;
-    private Integer ano;
+	@OneToOne
+	@JoinColumn(name = "escola_id")
+	private Escola escola;
 
-    public Curso(){}
+	@OneToMany(mappedBy = "curso")
+	private List<Turma> turmasDoCurso = new ArrayList<>();
 
-    public Curso(Long idCurso, String nome, Integer cargaHoraria, Integer ano) {
-        this.idCurso = idCurso;
-        this.nome = nome;
-        this.cargaHoraria = cargaHoraria;
-        this.ano = ano;
-    }
+	public Curso(){};
 
-    public Long getIdCurso() {
-        return idCurso;
-    }
+	public Curso(Integer id_curso, String nome, Integer ano) {
+		this.id_curso = id_curso;
+		this.nome = nome;
+		this.ano = ano;
+		
+	};
 
-    public void setIdCurso(Long idCurso) {
-        this.idCurso = idCurso;
-    }
+	public Integer getId_curso() {
+		return id_curso;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setId_curso(Integer id_curso) {
+		this.id_curso = id_curso;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public Integer getCargaHoraria() {
-        return cargaHoraria;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
+	public Integer getAno() {
+		return ano;
+	}
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
 
-    public Integer getAno() {
-        return ano;
-    }
+	public Escola getEscola() {
+		return escola;
+	}
 
-    public void setAno(Integer ano) {
-        this.ano = ano;
-    };
-
-    
+	public List<Turma> getTurmasDoCurso() {
+		return turmasDoCurso;
+	}
+	
 
 }

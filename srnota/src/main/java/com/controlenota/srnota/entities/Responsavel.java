@@ -11,61 +11,68 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_responsavel")
+@Table(name = "tb_responsavel")
 public class Responsavel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idResponsavel;
-    private String nome;
-    private String email;
-    private String telefone;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_responsavel;
 
-    @OneToMany(mappedBy = "responsavel")
-    private List<Aluno> alunos = new ArrayList<>();
+	private String nome;
 
-    public Responsavel(){}
+	private String email;
 
-    public Responsavel(Long idResponsavel, String nome, String email, String telefone) {
-        this.idResponsavel = idResponsavel;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-    }
+	private String telefone;
 
-    public Long getIdResponsavel() {
-        return idResponsavel;
-    }
+	@OneToMany(mappedBy = "responsavel")
+	private List<Aluno> alunos = new ArrayList<>();
 
-    public void setIdResponsavel(Long idResponsavel) {
-        this.idResponsavel = idResponsavel;
-    }
+	public Responsavel(){}
 
-    public String getNome() {
-        return nome;
-    }
+	public Responsavel(Integer id_responsavel, String nome, String email, String telefone) {
+		this.id_responsavel = id_responsavel;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	
 
-    public String getEmail() {
-        return email;
-    }
+	public Integer getId_responsavel() {
+		return id_responsavel;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setId_responsavel(Integer id_responsavel) {
+		this.id_responsavel = id_responsavel;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    };
+	public String getEmail() {
+		return email;
+	}
 
-    
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}; 
+
+
+	
 
 }
