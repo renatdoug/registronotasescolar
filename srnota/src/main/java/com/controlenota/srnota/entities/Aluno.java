@@ -3,6 +3,7 @@ package com.controlenota.srnota.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "tb_aluno")
@@ -22,16 +25,16 @@ public class Aluno {
 
 	private String nome;
 
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 
 	private String cpf;
 
-	@OneToOne(mappedBy = "aluno")
-	@JoinColumn(name = "matricula_id")
+	@OneToOne(mappedBy = "aluno", cascade = CascadeType.ALL)
 	private Matricula matriculaDoAluno;
 
 	@ManyToOne
-	@JoinColumn(name = "id_responsavel")
+    @JoinColumn(name = "id_responsavel", referencedColumnName = "id_responsavel")
 	private Responsavel responsavel;
 
 	public Aluno(){};

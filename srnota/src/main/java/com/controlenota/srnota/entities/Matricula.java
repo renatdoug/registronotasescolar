@@ -3,6 +3,7 @@ package com.controlenota.srnota.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,12 +28,15 @@ public class Matricula {
     @JoinColumn(name =  "turma_id")
 	private Turma turmaMatricula;
 
-	@OneToMany(mappedBy = "matricula")   
+	@OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL)   
 	private List<Nota> notasDaMatricula = new ArrayList<>();
 
 	@OneToOne
 	@JoinColumn(name = "aluno_id")
 	private Aluno aluno;
+
+	@OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL)
+	private List<Nota> notas = new ArrayList<>();
 
 	public Matricula(){};
 	
@@ -69,5 +73,12 @@ public class Matricula {
 	public Aluno getAluno() {
 		return aluno;
 	}
+
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	
 
 }

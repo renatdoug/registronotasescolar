@@ -3,6 +3,7 @@ package com.controlenota.srnota.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Responsavel {
 
 	private String telefone;
 
-	@OneToMany(mappedBy = "responsavel")
+	@OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL)
 	private List<Aluno> alunos = new ArrayList<>();
 
 	public Responsavel(){}

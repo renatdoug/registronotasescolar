@@ -19,7 +19,7 @@ public class Nota {
 	private Double nota;
 
 	@ManyToOne
-	@JoinColumn(name = "matricula_id")
+	@JoinColumn(name = "matricula_id", referencedColumnName = "id_matricula")
 	private Matricula matricula;
 
 	public Nota() {};
