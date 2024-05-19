@@ -19,8 +19,8 @@ import com.controlenota.srnota.dto.AlunoDTO;
 import com.controlenota.srnota.services.AlunoService;
 
 @RestController // Controlado implementa um recurso na APITest
-// Para configurar a classe pra que ela responda pela rota /Product usa essa anotação - COnfigura  o controlador para responder por esta URL
-@RequestMapping(value = "/products") // Mapeia todas as requisições para o caminho /api // Configuraçaõ da rota
+// Para configurar a classe pra que ela responda pela rota /Aluno usa essa anotação - COnfigura  o controlador para responder por esta URL
+@RequestMapping(value = "/aluno") // Mapeia todas as requisições para o caminho /api // Configuraçaõ da rota
 public class AlunoController {
 
     @Autowired
