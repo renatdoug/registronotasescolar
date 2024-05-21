@@ -24,11 +24,10 @@ public class AlunoService {
     
     @Transactional(readOnly = true)
     public AlunoDTO findById(Long id){
-        Optional<Aluno> result = repository.findById(id);
+        Optional<Aluno> result = repository.findById(id); // o findById por padrão retorna o objeto Optional, por isso tem que estanciar o Optionla <Classe de>
         Aluno aluno = result.orElseThrow(
             ()-> new ResourceNotFoundException("Recursno não encontrado"));
-        AlunoDTO dto = new AlunoDTO(aluno);
-        return dto;        
+        return new AlunoDTO(aluno);                
 
     }
 
