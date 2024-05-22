@@ -26,9 +26,9 @@ public class AlunoController {
     @Autowired
     private AlunoService service; // Injeção de dependência - Injeção de dependência de um serviço de aluno
 
-    @GetMapping(value = "/{id}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET     
-    public ResponseEntity<AlunoDTO> findById(@PathVariable Long id){
-        AlunoDTO dto = service.findById(id);
+    @GetMapping(value = "/{id_aluno}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET     
+    public ResponseEntity<AlunoDTO> findById(@PathVariable Long id_aluno){
+        AlunoDTO dto = service.findById(id_aluno);
         return ResponseEntity.ok(dto);
     }
 
@@ -41,12 +41,12 @@ public class AlunoController {
     @PostMapping
     public ResponseEntity<AlunoDTO> insert(@RequestBody AlunoDTO dto){
     	dto = service.insert(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id_aluno}")
                   .buildAndExpand(dto.getId_aluno()).toUri();
         return ResponseEntity.created(uri).body(dto);        
     }  
 
-    @PutMapping(value = "/{id}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET 
+    @PutMapping(value = "/{id_aluno}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET 
     
     public ResponseEntity<AlunoDTO> update(@PathVariable Long id_aluno, @RequestBody AlunoDTO dto){
         dto = service.update(id_aluno, dto);
@@ -54,7 +54,7 @@ public class AlunoController {
     }
 
     
-    @DeleteMapping(value = "/{id}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET 
+    @DeleteMapping(value = "/{id_aluno}") // Anotação essencial para que este recurso rsponda pelo método HTTP GET 
     
     public ResponseEntity<Void> delete(@PathVariable Long id_aluno){
         service.delete(id_aluno);

@@ -22,6 +22,7 @@ INSERT INTO tb_responsavel(email, nome, telefone) VALUES ('edleuza@gmail.com', '
 INSERT INTO tb_responsavel(email, nome, telefone) VALUES ('maria@hotmail.com', 'Maria', '0985656566525');
 INSERT INTO tb_responsavel(email, nome, telefone) VALUES ('noha@yahoo.com.br', 'Noel Souza', '08565859856985');
 
+
 -- Adicionando dados em tb_aluno
 INSERT INTO tb_aluno(nome, id_responsavel, data_Nascimento, cpf) VALUES ('Renato Douglas', 1, '1983-05-20', '99999999999');
 INSERT INTO tb_aluno(nome, id_responsavel, data_Nascimento, cpf) VALUES ('Maysa Ferras', 2, '1994-06-22', '999992569999');
